@@ -26,19 +26,11 @@ io.on('connection', (socket) => {
         console.log('User is disconnected');
     });
 
-    socket.emit('newEmail', {
-        from: 'Mike@email.com',
-        message: 'Hello schneider come see me',
-        createdAt: '5 pm Novemver 12th 2016'
-    });
-
-    socket.emit('newMessage', {
-        from: 'newMessage@message.com',
-        message: 'Jonny@john.com',
-        createdAt: 'instant'
-    });
-
-
+    // socket.emit('newEmail', {
+    //     from: 'Mike@email.com',
+    //     message: 'Hello schneider come see me',
+    //     createdAt: '5 pm Novemver 12th 2016'
+    // });
 
     socket.on('createEmail', (emailData) => {
 
@@ -46,9 +38,8 @@ io.on('connection', (socket) => {
     });
 
     socket.on('createMessage', (message) => {
-        console.log('create and send a message', message);
-        message.createdAt = 'June 2019 4:am';
-        socket.emit('newMessage', message);
+        message.createdAt = new Date().getTime();
+        io.emit('newMessage', message);
         console.log('sending message', message);
     })
 });
