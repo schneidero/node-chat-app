@@ -16,5 +16,5 @@ socket.on('newEmail', function(email) {
 });
 
 socket.on('newMessage', function(message) {
-    console.log('new Message received', message);
+    console.log(message.message);
 })
